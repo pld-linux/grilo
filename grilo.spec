@@ -6,23 +6,24 @@
 Summary:	Framework for access to sources of multimedia content
 Name:		grilo
 Version:	0.1.17
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.1/%{name}-%{version}.tar.xz
 # Source0-md5:	3bec3f1cff2697b3ecac4bb3ecb93e21
-BuildRequires:	tar >= 1:1.22
-BuildRequires:	xz
+URL:		http://live.gnome.org/Grilo
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool >= 2.2.6
 BuildRequires:	glib2-devel >= 2.22
-BuildRequires:	libxml2-devel
-BuildRequires:	gtk+3-devel >= 3.0.0
-BuildRequires:	libsoup-devel >= 2.33.4
-BuildRequires:	vala >= 0.14.0
-BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	gobject-introspection-devel >= 0.9
+BuildRequires:	gtk+3-devel >= 3.0.0
+BuildRequires:	gtk-doc >= 1.10
+BuildRequires:	libsoup-devel >= 2.33.4
+BuildRequires:	libtool >= 2.2.6
+BuildRequires:	libxml2-devel
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	vala >= 0.14.0
+BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -68,16 +69,13 @@ Dokumentacja API biblioteki grilo.
 
 %prep
 %setup -q
-#%patch0 -p1
 
 %build
-# if ac/am/lt/* rebuilding is necessary, do it in this order and add
-# appropriate BuildRequires
-#%{__libtoolize}
-#%{__aclocal}
-#%{__autoconf}
-#%{__autoheader}
-#%{__automake}
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--disable-silent-rules \
 	%{__enable_disable static_libs static} \
@@ -87,6 +85,7 @@ Dokumentacja API biblioteki grilo.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_libdir}/grilo-0.1
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -109,6 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgrilo-0.1.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgrlnet-0.1.so.0
 %attr(755,root,root) %{_libdir}/libgrlnet-0.1.so.*.*.*
+%dir %{_libdir}/grilo-0.1
 %{_libdir}/girepository-1.0/Grl-0.1.typelib
 %{_libdir}/girepository-1.0/GrlNet-0.1.typelib
 %{_mandir}/man1/grl-inspect.1*
