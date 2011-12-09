@@ -5,12 +5,12 @@
 #
 Summary:	Framework for access to sources of multimedia content
 Name:		grilo
-Version:	0.1.17
-Release:	2
+Version:	0.1.18
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.1/%{name}-%{version}.tar.xz
-# Source0-md5:	3bec3f1cff2697b3ecac4bb3ecb93e21
+# Source0-md5:	c2f34727afedf6e2febad53b20218395
 URL:		http://live.gnome.org/Grilo
 BuildRequires:	autoconf
 BuildRequires:	automake
