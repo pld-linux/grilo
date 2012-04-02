@@ -6,11 +6,12 @@
 Summary:	Framework for access to sources of multimedia content
 Name:		grilo
 Version:	0.1.18
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.1/%{name}-%{version}.tar.xz
 # Source0-md5:	c2f34727afedf6e2febad53b20218395
+Patch0:		%{name}-vala.patch
 URL:		http://live.gnome.org/Grilo
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -22,7 +23,7 @@ BuildRequires:	libsoup-devel >= 2.33.4
 BuildRequires:	libtool >= 2.2.6
 BuildRequires:	libxml2-devel
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	vala >= 0.14.0
+BuildRequires:	vala >= 2:0.16.0
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -69,6 +70,7 @@ Dokumentacja API biblioteki grilo.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -122,10 +124,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/grilo-net-0.1.pc
 %{_datadir}/gir-1.0/Grl-0.1.gir
 %{_datadir}/gir-1.0/GrlNet-0.1.gir
-%{_datadir}/vala-0.14/vapi/grilo-0.1.deps
-%{_datadir}/vala-0.14/vapi/grilo-0.1.vapi
-%{_datadir}/vala-0.14/vapi/grilo-net-0.1.deps
-%{_datadir}/vala-0.14/vapi/grilo-net-0.1.vapi
+%{_datadir}/vala-0.16/vapi/grilo-0.1.deps
+%{_datadir}/vala-0.16/vapi/grilo-0.1.vapi
+%{_datadir}/vala-0.16/vapi/grilo-net-0.1.deps
+%{_datadir}/vala-0.16/vapi/grilo-net-0.1.vapi
 
 %if %{with static_libs}
 %files static
