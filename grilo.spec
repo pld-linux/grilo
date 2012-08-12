@@ -2,15 +2,16 @@
 # Conditional build:
 %bcond_without	apidocs		# do not build and package API docs
 %bcond_without	static_libs	# don't build static libraries
+%bcond_without	vala		# do not build Vala API
 #
 Summary:	Framework for access to sources of multimedia content
 Name:		grilo
-Version:	0.1.19
+Version:	0.1.20
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.1/%{name}-%{version}.tar.xz
-# Source0-md5:	f387f1f7d20910d3cbaeb3f2819d7d6f
+# Source0-md5:	92ccc6b6b35d93bcd4d29d620c0e279b
 URL:		http://live.gnome.org/Grilo
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -22,7 +23,7 @@ BuildRequires:	libsoup-devel >= 2.33.4
 BuildRequires:	libtool >= 2.2.6
 BuildRequires:	libxml2-devel
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	vala >= 2:0.16.0
+%{?with_vala:BuildRequires:	vala >= 2:0.16.0}
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -66,6 +67,18 @@ API and internal documentation for grilo library.
 
 %description apidocs -l pl.UTF-8
 Dokumentacja API biblioteki grilo.
+
+%package -n vala-grilo
+Summary:	grilo API for Vala language
+Summary(pl.UTF-8):	API grilo dla języka Vala
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description -n vala-grilo
+grilo API for Vala language.
+
+%description -n vala-grilo -l pl.UTF-8
+API grilo dla języka Vala.
 
 %prep
 %setup -q
@@ -122,10 +135,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/grilo-net-0.1.pc
 %{_datadir}/gir-1.0/Grl-0.1.gir
 %{_datadir}/gir-1.0/GrlNet-0.1.gir
-%{_datadir}/vala-0.16/vapi/grilo-0.1.deps
-%{_datadir}/vala-0.16/vapi/grilo-0.1.vapi
-%{_datadir}/vala-0.16/vapi/grilo-net-0.1.deps
-%{_datadir}/vala-0.16/vapi/grilo-net-0.1.vapi
 
 %if %{with static_libs}
 %files static
@@ -138,4 +147,13 @@ rm -rf $RPM_BUILD_ROOT
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/grilo
+%endif
+
+%if %{with vala}
+%files -n vala-grilo
+%defattr(644,root,root,755)
+%{_datadir}/vala/vapi/grilo-0.1.deps
+%{_datadir}/vala/vapi/grilo-0.1.vapi
+%{_datadir}/vala/vapi/grilo-net-0.1.deps
+%{_datadir}/vala/vapi/grilo-net-0.1.vapi
 %endif
