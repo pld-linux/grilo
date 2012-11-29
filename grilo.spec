@@ -5,6 +5,7 @@
 %bcond_without	vala		# do not build Vala API
 #
 Summary:	Framework for access to sources of multimedia content
+Summary(pl.UTF-8):	Szkielet dostępu do źródeł treści multimedialnych
 Name:		grilo
 Version:	0.2.3
 Release:	1
@@ -12,8 +13,9 @@ License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.2/%{name}-%{version}.tar.xz
 # Source0-md5:	968ab6349839392d2d497674cd768529
+Patch0:		%{name}-sh.patch
 URL:		http://live.gnome.org/Grilo
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 1:2.30.0
 BuildRequires:	gnome-common
@@ -21,46 +23,53 @@ BuildRequires:	gobject-introspection-devel >= 0.9
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	libsoup-devel >= 2.34.0
-BuildRequires:	libtool >= 2.2.6
-BuildRequires:	libxml2-devel
+BuildRequires:	libtool >= 2:2.2.6
+BuildRequires:	libxml2-devel >= 2
+BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
 %{?with_vala:BuildRequires:	vala >= 2:0.16.0}
 BuildRequires:	xz
+Requires:	glib2 >= 1:2.30.0
+Requires:	libsoup >= 2.34.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Grilo is a framework that provides access to various sources of
 multimedia content, using a pluggable system.
 
+%description -l pl.UTF-8
+Grilo to szkielet zapewniający dostęp do różnych źródeł treści
+multimedialnych przy użyciu systemu wtyczek.
+
 %package devel
-Summary:	Header files for grilo library
-Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki grilo
+Summary:	Header files for grilo libraries
+Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek grilo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.30.0
-Requires:	libxml2-devel
+Requires:	libxml2-devel >= 2
 
 %description devel
-Header files for grilo library.
+Header files for grilo libraries.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe biblioteki grilo.
+Pliki nagłówkowe bibliotek grilo.
 
 %package static
-Summary:	Static grilo library
-Summary(pl.UTF-8):	Statyczna biblioteka grilo
+Summary:	Static grilo libraries
+Summary(pl.UTF-8):	Statyczne biblioteki grilo
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Static grilo library.
+Static grilo libraries.
 
 %description static -l pl.UTF-8
-Statyczna biblioteka grilo.
+Statyczne biblioteki grilo.
 
 %package apidocs
 Summary:	grilo API documentation
-Summary(pl.UTF-8):	Dokumentacja API biblioteki grilo
+Summary(pl.UTF-8):	Dokumentacja API bibliotek grilo
 Group:		Documentation
 
 %description apidocs
@@ -70,31 +79,33 @@ API and internal documentation for grilo library.
 Dokumentacja API biblioteki grilo.
 
 %package -n vala-grilo
-Summary:	grilo API for Vala language
-Summary(pl.UTF-8):	API grilo dla języka Vala
+Summary:	Vala API for grilo libraries
+Summary(pl.UTF-8):	API języka Vala do bibliotek grilo
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Requires:	vala >= 2:0.16.0
 
 %description -n vala-grilo
-grilo API for Vala language.
+Vala API for grilo libraries.
 
 %description -n vala-grilo -l pl.UTF-8
-API grilo dla języka Vala.
+API języka Vala do bibliotek grilo.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-silent-rules \
 	--disable-debug \
-	%{__enable_disable static_libs static} \
 	%{__enable_disable apidocs gtk-doc} \
+	--disable-silent-rules \
+	%{__enable_disable static_libs static} \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
