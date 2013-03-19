@@ -1,0 +1,12 @@
+diff -uNr grilo-0.2.4/configure.ac grilo-0.2.4.new/configure.ac
+--- grilo-0.2.4/configure.ac	2012-11-30 16:09:26.000000000 +0100
++++ grilo-0.2.4.new/configure.ac	2013-03-19 15:40:47.899983445 +0100
+@@ -23,7 +23,7 @@
+ AC_CONFIG_MACRO_DIR([m4])
+ AC_CONFIG_SRCDIR([src])
+ 
+-AM_CONFIG_HEADER(src/config.h)
++AC_CONFIG_HEADERS(src/config.h)
+ 
+ AC_PROG_CC
+ AC_PROG_INSTALL
