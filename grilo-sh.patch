@@ -1,0 +1,11 @@
+--- grilo-0.2.3/configure.ac.orig	2012-11-08 14:27:44.000000000 +0100
++++ grilo-0.2.3/configure.ac	2012-11-29 18:53:59.234567402 +0100
+@@ -61,7 +61,7 @@
+ # ----------------------------------------------------------
+ 
+ GNOME_COMPILE_WARNINGS([maximum])
+-CFLAGS+=" ${WARN_CFLAGS} -Wmissing-declarations -std=c99 "
++CFLAGS="$CFLAGS ${WARN_CFLAGS} -Wmissing-declarations -std=c99 "
+ 
+ GNOME_MAINTAINER_MODE_DEFINES
+ 
