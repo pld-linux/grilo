@@ -7,14 +7,13 @@
 Summary:	Framework for access to sources of multimedia content
 Summary(pl.UTF-8):	Szkielet dostępu do źródeł treści multimedialnych
 Name:		grilo
-Version:	0.2.4
+Version:	0.2.5
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.2/%{name}-%{version}.tar.xz
-# Source0-md5:	bad59e9e408b00149481902d54bfecb5
+# Source0-md5:	20b36e0471f7c40b04ea5e9e13920d47
 Patch0:		%{name}-sh.patch
-Patch1:		automake-1.13.patch
 URL:		http://live.gnome.org/Grilo
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -95,7 +94,6 @@ API języka Vala do bibliotek grilo.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
