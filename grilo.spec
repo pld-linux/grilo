@@ -22,6 +22,8 @@ BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.9
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	gtk-doc >= 1.10
+BuildRequires:	intltool >= 0.40.0
+BuildRequires:	liboauth-devel
 BuildRequires:	libsoup-devel >= 2.34.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 2
