@@ -7,17 +7,17 @@
 Summary:	Framework for access to sources of multimedia content
 Summary(pl.UTF-8):	Szkielet dostępu do źródeł treści multimedialnych
 Name:		grilo
-Version:	0.2.7
+Version:	0.2.8
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.2/%{name}-%{version}.tar.xz
-# Source0-md5:	c0d87f6b94f3518daec97d1aa825106d
+# Source0-md5:	ded2f82fd2fc5291762134d0cfc70307
 Patch0:		%{name}-sh.patch
 URL:		http://live.gnome.org/Grilo
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 1:2.30.0
+BuildRequires:	glib2-devel >= 1:2.32
 BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.9
 BuildRequires:	gtk+3-devel >= 3.0.0
@@ -29,10 +29,12 @@ BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 2
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	totem-pl-parser-devel >= 3.4.1
 %{?with_vala:BuildRequires:	vala >= 2:0.16.0}
 BuildRequires:	xz
-Requires:	glib2 >= 1:2.30.0
+Requires:	glib2 >= 1:2.32
 Requires:	libsoup >= 2.34.0
+Requires:	totem-pl-parser >= 3.4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,7 +50,7 @@ Summary:	Header files for grilo libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek grilo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.30.0
+Requires:	glib2-devel >= 1:2.32
 Requires:	libxml2-devel >= 2
 
 %description devel
@@ -138,26 +140,33 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libgrilo-0.2.so.1
 %attr(755,root,root) %{_libdir}/libgrlnet-0.2.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgrlnet-0.2.so.0
+%attr(755,root,root) %{_libdir}/libgrlpls-0.2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgrlpls-0.2.so.0
 %dir %{_libdir}/grilo-0.2
 %{_libdir}/girepository-1.0/Grl-0.2.typelib
 %{_libdir}/girepository-1.0/GrlNet-0.2.typelib
+%{_libdir}/girepository-1.0/GrlPls-0.2.typelib
 %{_mandir}/man1/grl-inspect.1*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgrilo-0.2.so
 %attr(755,root,root) %{_libdir}/libgrlnet-0.2.so
+%attr(755,root,root) %{_libdir}/libgrlpls-0.2.so
 %{_includedir}/grilo-0.2
 %{_pkgconfigdir}/grilo-0.2.pc
 %{_pkgconfigdir}/grilo-net-0.2.pc
+%{_pkgconfigdir}/grilo-pls-0.2.pc
 %{_datadir}/gir-1.0/Grl-0.2.gir
 %{_datadir}/gir-1.0/GrlNet-0.2.gir
+%{_datadir}/gir-1.0/GrlPls-0.2.gir
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgrilo-0.2.a
 %{_libdir}/libgrlnet-0.2.a
+%{_libdir}/libgrlpls-0.2.a
 %endif
 
 %if %{with apidocs}
