@@ -7,12 +7,12 @@
 Summary:	Framework for access to sources of multimedia content
 Summary(pl.UTF-8):	Szkielet dostępu do źródeł treści multimedialnych
 Name:		grilo
-Version:	0.2.10
+Version:	0.2.11
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.2/%{name}-%{version}.tar.xz
-# Source0-md5:	208ace762431bed2570e62b05fad574f
+# Source0-md5:	65ac9100dab7f93c4df41cfad58dccba
 Patch0:		%{name}-sh.patch
 URL:		http://live.gnome.org/Grilo
 BuildRequires:	autoconf >= 2.50
@@ -133,9 +133,9 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_bindir}/grilo-simple-playlist
 %attr(755,root,root) %{_bindir}/grilo-test-ui-0.2
 %attr(755,root,root) %{_bindir}/grl-inspect-0.2
+%attr(755,root,root) %{_bindir}/grl-launch-0.2
 %attr(755,root,root) %{_libdir}/libgrilo-0.2.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgrilo-0.2.so.1
 %attr(755,root,root) %{_libdir}/libgrlnet-0.2.so.*.*.*
