@@ -7,17 +7,17 @@
 Summary:	Framework for access to sources of multimedia content
 Summary(pl.UTF-8):	Szkielet dostępu do źródeł treści multimedialnych
 Name:		grilo
-Version:	0.2.11
+Version:	0.2.12
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.2/%{name}-%{version}.tar.xz
-# Source0-md5:	65ac9100dab7f93c4df41cfad58dccba
+# Source0-md5:	7e124e3dc1350c2576a84fd18a901d21
 Patch0:		%{name}-sh.patch
 URL:		http://live.gnome.org/Grilo
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 1:2.34
+BuildRequires:	glib2-devel >= 1:2.43.1
 BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.9
 BuildRequires:	gtk+3-devel >= 3.0.0
@@ -30,9 +30,9 @@ BuildRequires:	libxml2-devel >= 2
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	totem-pl-parser-devel >= 3.4.1
-%{?with_vala:BuildRequires:	vala >= 2:0.16.0}
+%{?with_vala:BuildRequires:	vala >= 2:0.27.0}
 BuildRequires:	xz
-Requires:	glib2 >= 1:2.34
+Requires:	glib2 >= 1:2.43.1
 Requires:	libsoup >= 2.34.0
 Requires:	totem-pl-parser >= 3.4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -50,7 +50,7 @@ Summary:	Header files for grilo libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek grilo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.34
+Requires:	glib2-devel >= 1:2.43.1
 Requires:	libxml2-devel >= 2
 
 %description devel
@@ -146,7 +146,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/girepository-1.0/Grl-0.2.typelib
 %{_libdir}/girepository-1.0/GrlNet-0.2.typelib
 %{_libdir}/girepository-1.0/GrlPls-0.2.typelib
-%{_mandir}/man1/grl-inspect.1*
+%{_mandir}/man1/grilo-test-ui-0.2.1*
+%{_mandir}/man1/grl-inspect-0.2.1*
+%{_mandir}/man1/grl-launch-0.2.1*
 
 %files devel
 %defattr(644,root,root,755)
