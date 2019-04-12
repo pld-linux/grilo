@@ -14,18 +14,17 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.3/%{name}-%{version}.tar
 # Source0-md5:	7c2c9a506e64e5f1a5fafd89ce53d9b0
 URL:		http://live.gnome.org/Grilo
 BuildRequires:	glib2-devel >= 1:2.44.0
-BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.9
-BuildRequires:	gtk+3-devel >= 3.0.0
+BuildRequires:	gtk+3-devel >= 3.14
 BuildRequires:	gtk-doc >= 1.10
-BuildRequires:	intltool >= 0.40.0
 BuildRequires:	liboauth-devel
 BuildRequires:	libsoup-devel >= 2.42.0
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 2
-BuildRequires:	meson
-BuildRequires:	ninja
+BuildRequires:	meson >= 0.37.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	totem-pl-parser-devel >= 3.4.1
 %{?with_vala:BuildRequires:	vala >= 2:0.27.0}
@@ -92,8 +91,9 @@ API języka Vala do bibliotek grilo.
 %setup -q
 
 %build
-%meson %{?with_apidocs:-Denable-gtk-doc=true} \
-	%{?without_vala:-Denable-vala=false} build
+%meson build \
+	%{?with_apidocs:-Denable-gtk-doc=true} \
+	%{?without_vala:-Denable-vala=false}
 %ninja_build -C build
 
 %install
