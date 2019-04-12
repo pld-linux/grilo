@@ -49,6 +49,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.44.0
 Requires:	libxml2-devel >= 2
+Obsoletes:	grilo-static
 
 %description devel
 Header files for grilo libraries.
