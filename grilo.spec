@@ -12,7 +12,7 @@ License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.3/%{name}-%{version}.tar.xz
 # Source0-md5:	7c2c9a506e64e5f1a5fafd89ce53d9b0
-URL:		http://live.gnome.org/Grilo
+URL:		https://wiki.gnome.org/Projects/Grilo
 BuildRequires:	glib2-devel >= 1:2.44.0
 BuildRequires:	gobject-introspection-devel >= 0.9
 BuildRequires:	gtk+3-devel >= 3.14
