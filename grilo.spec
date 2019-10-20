@@ -6,12 +6,12 @@
 Summary:	Framework for access to sources of multimedia content
 Summary(pl.UTF-8):	Szkielet dostępu do źródeł treści multimedialnych
 Name:		grilo
-Version:	0.3.9
+Version:	0.3.10
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.3/%{name}-%{version}.tar.xz
-# Source0-md5:	b15f41787dff407f7e9df7b5db96006d
+# Source0-md5:	f02bf585d1a48dc65be8b90ae3b08330
 URL:		https://wiki.gnome.org/Projects/Grilo
 BuildRequires:	glib2-devel >= 1:2.44.0
 BuildRequires:	gobject-introspection-devel >= 0.9
@@ -20,8 +20,8 @@ BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	liboauth-devel
 BuildRequires:	libsoup-devel >= 2.42.0
 BuildRequires:	libtool >= 2:2.2.6
-BuildRequires:	libxml2-devel >= 2
-BuildRequires:	meson >= 0.37.0
+BuildRequires:	libxml2-devel >= 2.0
+BuildRequires:	meson >= 0.46.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.736
@@ -30,6 +30,7 @@ BuildRequires:	totem-pl-parser-devel >= 3.4.1
 %{?with_vala:BuildRequires:	vala >= 2:0.27.0}
 BuildRequires:	xz
 Requires:	glib2 >= 1:2.44.0
+Requires:	gtk+3 >= 3.14
 Requires:	libsoup >= 2.42.0
 Requires:	totem-pl-parser >= 3.4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -48,7 +49,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek grilo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.44.0
-Requires:	libxml2-devel >= 2
+Requires:	libxml2-devel >= 2.0
 Obsoletes:	grilo-static
 
 %description devel
