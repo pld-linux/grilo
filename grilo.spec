@@ -63,9 +63,7 @@ Summary:	grilo API documentation
 Summary(pl.UTF-8):	Dokumentacja API bibliotek grilo
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API and internal documentation for grilo library.
@@ -79,9 +77,7 @@ Summary(pl.UTF-8):	API języka Vala do bibliotek grilo
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.16.0
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description -n vala-grilo
 Vala API for grilo libraries.
