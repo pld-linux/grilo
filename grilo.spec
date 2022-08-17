@@ -1,27 +1,32 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# do not build and package API docs
-%bcond_without	vala		# do not build Vala API
+%bcond_with	libsoup3	# libsoup3 instead of libsoup 2
+%bcond_without	apidocs		# API documentation
+%bcond_without	vala		# Vala API
 
 Summary:	Framework for access to sources of multimedia content
 Summary(pl.UTF-8):	Szkielet dostępu do źródeł treści multimedialnych
 Name:		grilo
-Version:	0.3.14
+Version:	0.3.15
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/grilo/0.3/%{name}-%{version}.tar.xz
-# Source0-md5:	e936bd1b918773c0d0c425a5e6b30ba5
+# Source0-md5:	df4e68e2bba461f0aed61874d8e4e05a
 URL:		https://wiki.gnome.org/Projects/Grilo
-BuildRequires:	glib2-devel >= 1:2.58.0
+BuildRequires:	glib2-devel >= 1:2.66
 BuildRequires:	gobject-introspection-devel >= 0.9
 BuildRequires:	gtk+3-devel >= 3.14
 BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	liboauth-devel
+%if %{with libsoup3}
+BuildRequires:	libsoup3-devel >= 3.0
+%else
 BuildRequires:	libsoup-devel >= 2.42.0
+%endif
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 2.0
-BuildRequires:	meson >= 0.46.0
+BuildRequires:	meson >= 0.47.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
@@ -30,9 +35,13 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	totem-pl-parser-devel >= 3.4.1
 %{?with_vala:BuildRequires:	vala >= 2:0.27.0}
 BuildRequires:	xz
-Requires:	glib2 >= 1:2.58.0
+Requires:	glib2 >= 1:2.66
 Requires:	gtk+3 >= 3.14
+%if %{with libsoup3}
+Requires:	libsoup3 >= 3.0
+%else
 Requires:	libsoup >= 2.42.0
+%endif
 Requires:	totem-pl-parser >= 3.4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -49,7 +58,7 @@ Summary:	Header files for grilo libraries
 Summary(pl.UTF-8):	Pliki nagłówkowe bibliotek grilo
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.58.0
+Requires:	glib2-devel >= 1:2.66
 Requires:	libxml2-devel >= 2.0
 Obsoletes:	grilo-static < 0.3.7
 
@@ -92,7 +101,9 @@ API języka Vala do bibliotek grilo.
 %build
 %meson build \
 	%{?with_apidocs:-Denable-gtk-doc=true} \
-	%{?without_vala:-Denable-vala=false}
+	%{?without_vala:-Denable-vala=false} \
+	%{!?with_libsoup3:-Dsoup3=false}
+
 %ninja_build -C build
 
 %install
