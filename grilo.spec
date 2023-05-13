@@ -7,12 +7,12 @@
 Summary:	Framework for access to sources of multimedia content
 Summary(pl.UTF-8):	Szkielet dostępu do źródeł treści multimedialnych
 Name:		grilo
-Version:	0.3.15
+Version:	0.3.16
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/grilo/0.3/%{name}-%{version}.tar.xz
-# Source0-md5:	df4e68e2bba461f0aed61874d8e4e05a
+# Source0-md5:	e81c4d7e182eb6448b9f0458f52511a3
 URL:		https://wiki.gnome.org/Projects/Grilo
 BuildRequires:	glib2-devel >= 1:2.66
 BuildRequires:	gobject-introspection-devel >= 0.9
@@ -26,7 +26,7 @@ BuildRequires:	libsoup-devel >= 2.42.0
 %endif
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 2.0
-BuildRequires:	meson >= 0.47.0
+BuildRequires:	meson >= 0.62.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
