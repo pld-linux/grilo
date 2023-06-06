@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	libsoup3	# libsoup3 instead of libsoup 2
+%bcond_with	libsoup2	# libsoup 2 instead of libsoup3
 %bcond_without	apidocs		# API documentation
 %bcond_without	vala		# Vala API
 
@@ -8,7 +8,7 @@ Summary:	Framework for access to sources of multimedia content
 Summary(pl.UTF-8):	Szkielet dostępu do źródeł treści multimedialnych
 Name:		grilo
 Version:	0.3.16
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/grilo/0.3/%{name}-%{version}.tar.xz
@@ -19,10 +19,10 @@ BuildRequires:	gobject-introspection-devel >= 0.9
 BuildRequires:	gtk+3-devel >= 3.14
 BuildRequires:	gtk-doc >= 1.10
 BuildRequires:	liboauth-devel
-%if %{with libsoup3}
-BuildRequires:	libsoup3-devel >= 3.0
-%else
+%if %{with libsoup2}
 BuildRequires:	libsoup-devel >= 2.42.0
+%else
+BuildRequires:	libsoup3-devel >= 3.0
 %endif
 BuildRequires:	libtool >= 2:2.2.6
 BuildRequires:	libxml2-devel >= 2.0
@@ -37,10 +37,10 @@ BuildRequires:	totem-pl-parser-devel >= 3.4.1
 BuildRequires:	xz
 Requires:	glib2 >= 1:2.66
 Requires:	gtk+3 >= 3.14
-%if %{with libsoup3}
-Requires:	libsoup3 >= 3.0
-%else
+%if %{with libsoup2}
 Requires:	libsoup >= 2.42.0
+%else
+Requires:	libsoup3 >= 3.0
 %endif
 Requires:	totem-pl-parser >= 3.4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -102,7 +102,7 @@ API języka Vala do bibliotek grilo.
 %meson build \
 	%{?with_apidocs:-Denable-gtk-doc=true} \
 	%{?without_vala:-Denable-vala=false} \
-	%{!?with_libsoup3:-Dsoup3=false}
+	%{?with_libsoup2:-Dsoup3=false}
 
 %ninja_build -C build
 
